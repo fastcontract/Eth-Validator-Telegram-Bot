@@ -23,7 +23,7 @@ I run the bot remotely on a free google cloud instance using these instructions:
 https://programmingforgood.medium.com/deploy-telegram-bot-on-google-cloud-platform-74f1f531f65e
 
 I considered running it on my own machines, but if the internet goes out, that defeats the purpose!
-
+You need python-telegram-bot which you can install with pip.
 
 
 
