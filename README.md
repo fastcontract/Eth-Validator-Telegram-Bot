@@ -10,25 +10,28 @@ Type /newbot and follow the prompts
 Botfather will give you an HTTP API access token (adf42kjk4hj2khu42hkj:23jlh423jhkl42lkj432jlk) This is the BOT_TOKEN in config.py
 
 Navigate to https://api.telegram.org/bot?????????????????:????????????????/getUpdates
-Replace the ????:???? with your token
-Message your bot and refresh the page. Data should shot up. Look for the Chat object and find the ID number. This is your CHAT_ID in config.py
+Replace the ????:???? with your token.
+Message your bot and refresh the page. Data should show up. Look for the Chat object and find the ID number. This is your CHAT_ID in config.py
 
-For the BEACON_API, log in to a beaconcha.in account, and navigate to your settings>API to get your key.
+For the BEACON_API, log in to a beaconcha.in account, and navigate to settings>API to get your key.
 
 
 
-I run the bot remotely on a free google cloud instance using these instructions:
+I run the bot remotely on a free Google cloud instance using these instructions:
 (of course change the git clone address in the tutorial)
 
 https://programmingforgood.medium.com/deploy-telegram-bot-on-google-cloud-platform-74f1f531f65e
 
 I considered running it on my own machines, but if the internet goes out, that defeats the purpose!
-You need python-telegram-bot which you can install with pip.
-
+You need python-telegram-bot which you can install with pip if you're running it locally.
 
 
 Bot usage (/help):
+
 Type /start to start the monitoring bot.
+
 Type /stop to stop the monitoring bot.
+
 Type /report to see the total number of misses in the last 100 epochs.
+
 Type /status to see when the last epoch data was imported.
