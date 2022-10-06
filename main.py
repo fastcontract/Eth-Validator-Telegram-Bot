@@ -48,10 +48,12 @@ def callback_auto_message(context):
     if brokenvalidators:
         if len(brokenvalidators) > 5:
             context.bot.send_message(id, text="Validator(s) " + ",".join(map(str, brokenvalidators[:5])) + " (+" + str(len(brokenvalidators[:5])) +
-                                     " more) missed " + str(NOTIFY_ON_SEQ_MISSES) + " attestations in a row. https://beaconcha.in/validator/" + str(brokenvalidators[0]))
+                                     " more) missed " + str(NOTIFY_ON_SEQ_MISSES) + " attestations in a row @ epoch " + str(current_epoch) +
+                                     " https://beaconcha.in/validator/" + str(brokenvalidators[0]))
         else:
             context.bot.send_message(id, text="Validator(s) " + ",".join(map(str, brokenvalidators)) + " missed " + str(NOTIFY_ON_SEQ_MISSES) +
-                                     " attestations in a row. https://beaconcha.in/validator/" + str(brokenvalidators[0]))
+                                     " attestations in a row @ epoch " + str(current_epoch) +
+                                     " https://beaconcha.in/validator/" + str(brokenvalidators[0]))
 
     try:
         for prop in p["data"]:
@@ -98,12 +100,14 @@ def report(update, context):
     url1 = "https://beaconcha.in/api/v1/validator/"+",".join(str_validators)+"/attestations?apikey="+BEACON_API
     req1 = get(url1)
     u1 = json.loads(req1.text)
+    print(u1)
     misslistreport = []
     for i in u1["data"]:
         if i["inclusionslot"] == 0:
             misslistreport.append(i["validatorindex"])
     context.bot.send_message(id, text="In the last 100 epochs (about 10 hours) you've missed " +
-                             str(len(misslistreport)) + " attestations across all monitored validators.")
+                             str(len(misslistreport)) + " attestations across all monitored validators, most recently " + str(misslistreport[0]) +
+                             " https://beaconcha.in/validator/" + str(misslistreport[0]))
 
 
 def status(update, context):
