@@ -24,7 +24,7 @@ def callback_auto_message(context):
     req = get(url)
     u = json.loads(req.text)
     while current_epoch == u["data"][0]["epoch"] and flag == 1:
-        sleep(20)
+        sleep(60)
         req = get(url)
         u = json.loads(req.text)
         if current_epoch != u["data"][0]["epoch"]:
