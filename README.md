@@ -1,5 +1,5 @@
 # Eth-Validator-Telegram-Bot
-This bot watches validators and notifies the user via Telegram when misses happen. I got sick of the beaconchain app notifications - I do a lot in telegram already, and I wanted to only be notified if >1 attestation was missed. 1 is no big deal, more than 1 is likely an issue. This bot as a limit of 100 validators due to the beaconcha.in api.
+This bot watches validators and notifies the user via Telegram when misses happen. I got sick of the beaconchain app notifications - I do a lot in telegram already, and I wanted to only be notified if >1 attestation was missed. 1 is no big deal, more than 1 is likely an issue. This bot has a limit of 100 validators due to the beaconcha.in api.
 
 
 
