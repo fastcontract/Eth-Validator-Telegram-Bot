@@ -100,7 +100,6 @@ def report(update, context):
     url1 = "https://beaconcha.in/api/v1/validator/"+",".join(str_validators)+"/attestations?apikey="+BEACON_API
     req1 = get(url1)
     u1 = json.loads(req1.text)
-    print(u1)
     misslistreport = []
     for i in u1["data"][len(validators):]:
         if i["inclusionslot"] == 0:
