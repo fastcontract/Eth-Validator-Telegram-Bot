@@ -102,12 +102,15 @@ def report(update, context):
     u1 = json.loads(req1.text)
     print(u1)
     misslistreport = []
-    for i in u1["data"]:
+    for i in u1["data"][len(validators):]:
         if i["inclusionslot"] == 0:
             misslistreport.append(i["validatorindex"])
-    context.bot.send_message(id, text="In the last 100 epochs (about 10 hours) you've missed " +
-                             str(len(misslistreport)) + " attestations across all monitored validators, most recently " + str(misslistreport[0]) +
-                             " https://beaconcha.in/validator/" + str(misslistreport[0]))
+    try:
+        context.bot.send_message(id, text="In the last 100 epochs (about 10 hours) you've missed " +
+                                 str(len(misslistreport)) + " attestations across all monitored validators, most recently " + str(misslistreport[0]) +
+                                 " https://beaconcha.in/validator/" + str(misslistreport[0]))
+    except:
+        context.bot.send_message(id, text="No attestations have been missed in the last 100.")
 
 
 def status(update, context):
