@@ -74,7 +74,7 @@ def start_auto_messaging(update, context):
     chat_id = id
     context.bot.send_message(chat_id=chat_id, text="Starting attestation monitoring!")
     context.job_queue.run_once(callback_auto_message, 1, context=chat_id, name=str(chat_id))
-    context.job_queue.run_repeating(callback_auto_message, 540, context=chat_id, name=str(chat_id))
+    context.job_queue.run_repeating(callback_auto_message, 420, context=chat_id, name=str(chat_id))
 
 
 def stop_notify(update, context):
