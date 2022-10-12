@@ -24,7 +24,7 @@ def callback_auto_message(context):
     req = get(url)
     u = json.loads(req.text)
     while current_epoch == u["data"][0]["epoch"] and flag == 1:
-        sleep(60)
+        sleep(180)
         req = get(url)
         u = json.loads(req.text)
         if current_epoch != u["data"][0]["epoch"]:
@@ -74,7 +74,7 @@ def start_auto_messaging(update, context):
     chat_id = id
     context.bot.send_message(chat_id=chat_id, text="Starting attestation monitoring!")
     context.job_queue.run_once(callback_auto_message, 1, context=chat_id, name=str(chat_id))
-    context.job_queue.run_repeating(callback_auto_message, 420, context=chat_id, name=str(chat_id))
+    context.job_queue.run_repeating(callback_auto_message, 360, context=chat_id, name=str(chat_id))
 
 
 def stop_notify(update, context):
