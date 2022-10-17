@@ -36,14 +36,14 @@ def callback_auto_message(context):
     propreq = get(propurl)
     p = json.loads(propreq.text)
 
-    checklen = len(validators) * NOTIFY_ON_SEQ_MISSES
+    checklen = len(validators) * (NOTIFY_ON_SEQ_MISSES + 1)
 
     misslist = []
     for i in u["data"][:checklen]:
         if i["inclusionslot"] == 0:
             misslist.append(i["validatorindex"])
 
-    brokenvalidators = list(set([x for x in misslist if misslist.count(x) > NOTIFY_ON_SEQ_MISSES-1]))
+    brokenvalidators = list(set([x for x in misslist if misslist.count(x) > NOTIFY_ON_SEQ_MISSES]))
     
     if brokenvalidators:
         if len(brokenvalidators) > 5:
