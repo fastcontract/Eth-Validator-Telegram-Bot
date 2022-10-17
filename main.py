@@ -56,13 +56,21 @@ def callback_auto_message(context):
                                      " https://beaconcha.in/validator/" + str(brokenvalidators[0]))
 
     try:
-        for prop in p["data"]:
-            if prop["epoch"] == current_epoch and prop["exec_timestamp"]:
-                context.bot.send_message(id, text="\U00002728 \U00002728 Validator " + str(prop["proposer"]) +
-                                         " has proposed a new block! \U00002728 \U00002728 \nhttps://beaconcha.in/slot/" + str(prop["slot"]))
-            elif prop["epoch"] == current_epoch and not prop["exec_timestamp"]:
-                context.bot.send_message(id, text="\U0000203C \U0000203C VALIDATOR " + str(prop["proposer"]) +
-                                         " MISSED A PROPOSAL \U0000203C \U0000203C \nhttps://beaconcha.in/slot/" + str(prop["slot"]))
+        if "attestationscount" in p["data"]:
+            if p["data"]["epoch"] == (current_epoch-1) and p["data"]["exec_timestamp"]:
+                context.bot.send_message(id, text="\U00002728 \U00002728 Validator " + str(p["data"]["proposer"]) +
+                                         " has proposed a new block! \U00002728 \U00002728 \nhttps://beaconcha.in/slot/" + str(p["data"]["slot"]))
+            elif p["data"]["epoch"] == (current_epoch-1) and not p["data"]["exec_timestamp"]:
+                context.bot.send_message(id, text="\U0000203C \U0000203C VALIDATOR " + str(p["data"]["proposer"]) +
+                                         " MISSED A PROPOSAL \U0000203C \U0000203C \nhttps://beaconcha.in/slot/" + str(p["data"]["slot"]))
+        else:                
+            for prop in p["data"]:
+                if prop["epoch"] == (current_epoch-1) and prop["exec_timestamp"]:
+                    context.bot.send_message(id, text="\U00002728 \U00002728 Validator " + str(prop["proposer"]) +
+                                             " has proposed a new block! \U00002728 \U00002728 \nhttps://beaconcha.in/slot/" + str(prop["slot"]))
+                elif prop["epoch"] == (current_epoch-1) and not prop["exec_timestamp"]:
+                    context.bot.send_message(id, text="\U0000203C \U0000203C VALIDATOR " + str(prop["proposer"]) +
+                                             " MISSED A PROPOSAL \U0000203C \U0000203C \nhttps://beaconcha.in/slot/" + str(prop["slot"]))
     except:
         pass
 
